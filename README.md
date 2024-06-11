@@ -5,3 +5,10 @@ Click on "Settings".
 Click on "Secrets" in the left sidebar.
 Click "New repository secret".
 Name the secret DINGIFY_TOKEN and paste your Dingify token as the value aasdsads
+
+sdasdsad
+asd
+asd
+asd
+adsd
+a
