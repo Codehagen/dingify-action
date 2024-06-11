@@ -1,0 +1,45 @@
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - master
+  release:
+    types:
+      - published
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: ./
+        with:
+          token: ${{ secrets.DINGIFY_TOKEN }}
+          project: "my-project"
+          channel: test
+          event: "Test event"
+          userId: "user-222"
+          tags: '{"plan":"premium","cycle":"monthly"}'
+          notify: false
+
+  publish:
+    runs-on: ubuntu-latest
+
+    needs:
+      - test
+
+    if: ${{ github.event_name == 'release' }}
+
+    steps:
+      - uses: actions/checkout@master
+      - uses: ./
+        with:
+          token: ${{ secrets.DINGIFY_TOKEN }}
+          project: "my-project"
+          channel: publish
+          event: "Published ${{ github.event.release.tag_name }}"
+          userId: "user-222"
+          tags: '{"plan":"premium","cycle":"monthly"}'
+          icon: 🎉
+          notify: true

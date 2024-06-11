@@ -1,0 +1,47 @@
+name: Log to Dingify
+description: Send messages to Dingify
+
+author: Christer Hagen
+
+branding:
+  color: gray-dark
+  icon: align-center
+
+inputs:
+  token:
+    description: Your Dingify token
+    required: true
+
+  project:
+    description: The project to which you need to send the log. Must be a slug.
+    required: true
+
+  channel:
+    description: The channel of the project to which you need to send the log. Must be a slug.
+    required: true
+
+  event:
+    description: "The name of your log. Ex: 'New event!'"
+    required: true
+
+  userId:
+    description: The user ID associated with the event
+    required: true
+
+  icon:
+    description: An icon emoji
+    required: false
+    default: 🤩
+
+  notify:
+    description: Should Dingify send you a notification? True by default
+    default: true
+
+  tags:
+    description: Additional tags for the event
+    required: false
+    default: ""
+
+runs:
+  using: docker
+  image: Dockerfile
